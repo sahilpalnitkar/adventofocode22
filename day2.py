@@ -1,16 +1,77 @@
-"A,X - rock"
-"B,Y - paper"
-"C,Z - scissor"
+with open('inputday2.txt', 'r') as f:
+    lines = f.readlines()
 
-scores = {('A','X'):6, ('A','Y'):8, ('A','Z'):1, ('B','X'):1, ('B','Y'):6, ('B','Z'):8, ('C','X'):8, ('C','Y'):1, ('C','Z'):6 }
-f = open("inputday2.txt","r")
-lines = f.read().split('\n')
-strategy = [line.split() for line in lines]
-# print(strategy)
+def points(opponent, me):
 
-sum = 0
-for i in strategy:
-    if len(i) == 2:
-        sum += scores[(i[0],i[1])]
+    score = 0
 
-print(sum)
+    if me == 'X':
+        score += 1
+        if opponent == 'A':
+            score += 3
+        elif opponent == 'C':
+            score += 6
+
+    elif me == 'Y':
+        score += 2
+        if opponent == 'A':
+            score += 6
+        elif opponent == 'B':
+            score += 3
+
+    else:
+        score += 3
+        if opponent == 'B':
+            score += 6
+        elif opponent == 'C':
+            score += 3
+
+    return score
+                
+total = 0
+
+for l in lines:
+    game = l.strip().split()
+    total += points(game[0],game[1])
+
+print(total)
+
+def points2(opponent, result):
+
+    score = 0
+
+    if result == 'X':
+        if opponent == 'A':
+            score += 3
+        elif opponent == 'B':
+            score += 1
+        else:
+            score += 2
+
+    elif result == 'Y':
+        score += 3
+        if opponent == 'A':
+            score += 1
+        elif opponent == 'B':
+            score += 2
+        else:
+            score += 3
+
+    else:
+        score += 6
+        if opponent == 'A':
+            score += 2
+        elif opponent == 'B':
+            score += 3
+        else:
+            score += 1
+
+    return score
+             
+grandtotal = 0
+
+for l in lines:
+    game = l.strip().split()
+    grandtotal += points2(game[0],game[1])
+
+print(grandtotal)
