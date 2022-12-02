@@ -1,3 +1,5 @@
+#Sahil Palnitkar
+
 input =[]
 with open("inputday1.txt", "r") as f:
     input=[a.split('\n') for a in f.read().split("\n\n")]

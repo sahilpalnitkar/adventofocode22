@@ -1,3 +1,5 @@
+#Samantha Papageorge
+
 with open('inputday2.txt', 'r') as f:
     lines = f.readlines()
 
